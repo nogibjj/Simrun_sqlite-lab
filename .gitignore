@@ -11,6 +11,8 @@ model.pth
 __pycache__/
 *.py[cod]
 *$py.class
+# ignore database 
+*.db
 
 # C extensions
 *.so
