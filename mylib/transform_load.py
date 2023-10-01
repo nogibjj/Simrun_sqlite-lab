@@ -14,7 +14,7 @@ def load(dataset="/workspaces/Simrun_sqlite-lab/data/patient.csv"):
     #prints the full working directory and path
     print(os.getcwd())
     payload = csv.reader(open(dataset, newline=''), delimiter=',')
-    conn = sqlite3.connect('Patient.db')
+    conn = sqlite3.connect('PatientDB.db')
     c = conn.cursor()
     c.execute("DROP TABLE IF EXISTS PatientDB")
     c.execute("CREATE TABLE PatientDB (id,general_name, count_products, ingred_FPro, avg_FPro_products, avg_distance_root, ingred_normalization_term, semantic_tree_name, semantic_tree_node)")
