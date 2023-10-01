@@ -7,7 +7,7 @@ from mylib.query import query
 
 
 def test_query():
-    assert query("SELECT "Facility ID" FROM PatientDB where "HCAHPS Answer Description" = "Nurse communication - star rating"") == [('Facility ID',), ('340001',)]
+    assert query("SELECT COUNT(*) FROM PatientDB") == [('10045',)]
     
     pass
 def test_extract():
