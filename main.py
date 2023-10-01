@@ -1,7 +1,7 @@
 """
 ETL-Query script
 """
-
+import fire
 from mylib.extract import extract
 from mylib.transform_load import load
 from mylib.query import query
@@ -16,4 +16,7 @@ load()
 
 # Query
 print("Querying data...")
-query()
+query(the_query)
+
+if __name__ == "__main__":
+  fire.Fire(main)
