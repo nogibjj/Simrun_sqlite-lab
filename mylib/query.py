@@ -3,14 +3,21 @@
 import sqlite3
 
 
-def query():
-    """Query the database for the top 5 rows of the GroceryDB table"""
-    conn = sqlite3.connect("GroceryDB.db")
+def query(the_query):
+    """Query the database for all rows of the PatientDB table"""
+    conn = sqlite3.connect("PatientDB.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM GroceryDB")
-    print("Top 5 rows of the GroceryDB table:")
-    print(cursor.fetchall())
+    sql_query = ''' 
+    SELECT "Effectiveness of care national comparison", 
+       "Readmission national comparison", 
+       "Facility Name", 
+       "State" FROM patientDB
+       WHERE "State" = 'NC';
+       '''
+    cursor.execute(sql_query)
+    for row in cursor.fetchall():
+        print(row)
     conn.close()
-    return "Success"
+    return 
 
 
