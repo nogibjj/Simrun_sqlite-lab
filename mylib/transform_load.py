@@ -8,13 +8,15 @@ import csv
 import os
 
 #load the csv file and insert into a new sqlite3 database
-def load(dataset="/workspaces/Simrun_sqlite-lab/data/patient.csv"):
+def load(dataset="https://github.com/nogibjj/Simrun_sqlite-lab/raw/main/data/NC_data.csv"):
     """"Transforms and Loads data into the local SQLite3 database"""
 
     #prints the full working directory and path
     print(os.getcwd())
     payload = csv.reader(open(dataset, newline=''), delimiter=',')
-    conn = sqlite3.connect('PatientDB.db')
+    print(payload)
+    file = "PatientDB.db"
+    conn = sqlite3.connect(file)
     c = conn.cursor()
     c.execute("DROP TABLE IF EXISTS PatientDB")
     c.execute(
@@ -35,9 +37,10 @@ def load(dataset="/workspaces/Simrun_sqlite-lab/data/patient.csv"):
     Timeliness of care national comparison footnote,
     Efficient use of medical imaging national comparison,
     Efficient use of medical imaging national comparison footnote)"""
-             )
+            )
     #insert
-    c.executemany("INSERT INTO PatientDB VALUES "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", payload)
+    c.executemany("INSERT INTO PatientDB VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", payload)
+
     conn.commit()
     conn.close()
     return "PatientDB.db"
