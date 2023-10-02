@@ -7,7 +7,7 @@ from mylib.query import query
 
 
 def test_query():
-    assert query("SELECT COUNT(*) JeopardyDB") == [("36557",)]
+    assert query("SELECT COUNT(*) FROM JeopardyDB") == [("36557",)]
 
     pass
 
