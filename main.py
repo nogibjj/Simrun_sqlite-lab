@@ -15,7 +15,7 @@ def main(the_query):
 
     # Transform and load
     print("Transforming data...")
-    load()
+    load(the_query)
 
     # Query
     print("Querying data...")
@@ -24,4 +24,6 @@ def main(the_query):
 
 if __name__ == "__main__":
     
-    fire.Fire(main(...))
+    #load("SELECT COUNT(*) FROM table1")
+    fire.Fire(main)
+    #query("SELECT COUNT(*) FROM table1")
