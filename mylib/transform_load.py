@@ -24,8 +24,7 @@ def load(dataset="data/NC_data.csv"):
         """
     CREATE TABLE PatientDB 
     ("Facility ID","State", "HCAHPS Answer Description"
-    "Readmission national comparison","Effectiveness of care national comparison",
-    "Efficient use of medical imaging national comparison")"""
+    "Readmission national comparison","Effectiveness of care national comparison")"""
     )
     # insert
     c.executemany("INSERT INTO PatientDB VALUES (?, ?, ?, ?, ?)", payload)
