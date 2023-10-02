@@ -9,26 +9,25 @@ import os
 
 
 # load the csv file and insert into a new sqlite3 database
-def load(dataset="data/NC_data.csv"):
+def load(dataset="data/Jeopardy.csv"):
     """ "Transforms and Loads data into the local SQLite3 database"""
 
     # prints the full working directory and path
     print(os.getcwd())
     payload = csv.reader(open(dataset, newline=""), delimiter=",")
     print(payload)
-    file = "PatientDB.db"
+    file = "JeopardyDB.db"
     conn = sqlite3.connect(file)
     c = conn.cursor()
-    c.execute("DROP TABLE IF EXISTS PatientDB")
+    c.execute("DROP TABLE IF EXISTS JeopardyDB")
     c.execute(
         """
-    CREATE TABLE PatientDB 
-    ("Facility ID","State", "HCAHPS Answer Description"
-    "Readmission national comparison","Effectiveness of care national comparison")"""
+    CREATE TABLE JeopardyDB 
+    ("Show Number", "Air Date", "Round", "Category", "Value", "Question", "Answer")"""
     )
     # insert
-    c.executemany("INSERT INTO PatientDB VALUES (?, ?, ?, ?, ?)", payload)
+    c.executemany("INSERT INTO JeopardyDB VALUES (?, ?, ?, ?, ?, ?, ?)", payload)
 
     conn.commit()
     conn.close()
-    return "PatientDB.db"
+    return "JeopardyDB.db"

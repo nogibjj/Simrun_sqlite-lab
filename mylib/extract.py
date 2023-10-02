@@ -1,14 +1,14 @@
 """
 Extract a dataset from a URL like Kaggle or data.gov. JSON or CSV formats tend to work well
 
-Patient Satisfaction dataset
+Jeopardy dataset
 """
 import requests
 
 
 def extract(
-    url="https://raw.githubusercontent.com/nogibjj/Simrun_sqlite-lab/main/data/NC_data.csv",
-    file_path="data/NC_data.csv",
+    url="https://raw.githubusercontent.com/nogibjj/Simrun_sqlite-lab/main/data/Jeopardy.csv",
+    file_path="data/Jeopardy.csv",
 ):
     """ "Extract a url to a file path"""
     with requests.get(url) as r:
