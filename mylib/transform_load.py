@@ -4,6 +4,7 @@ Example:
 "Show Number", "Air Date", "Round", "Category", "Value", "Question", "Answer"
 """
 import sqlite3
+import pandas as pd
 
 
 def load(the_query):
