@@ -1,36 +1,36 @@
 """
 Transforms and Loads data into the local SQLite3 database
 Example:
-,general name,count_products,ingred_FPro,avg_FPro_products,avg_distance_root,ingred_normalization_term,semantic_tree_name,semantic_tree_node
+"Show Number", "Air Date", "Round", "Category", "Value", "Question", "Answer"
 """
+import chardet
 import sqlite3
 import csv
 import os
 
-#load the csv file and insert into a new sqlite3 database
-def load(dataset="/data/NC_data.csv"):
-    """"Transforms and Loads data into the local SQLite3 database"""
 
-    #prints the full working directory and path
+# load the csv file and insert into a new sqlite3 database
+def load(dataset="data/Jeopardy.csv"):
+    """ "Transforms and Loads data into the local SQLite3 database"""
+
+    # prints the full working directory and path
     print(os.getcwd())
-    payload = csv.reader(open(dataset, newline=''), delimiter=',')
+    with open(dataset, "rb") as f:
+        result = chardet.detect(f.read())
+    payload = csv.reader(open(dataset, newline="", encoding="utf-8"), delimiter=",")
     print(payload)
-    file = "PatientDB.db"
+    file = "JeopardyDB.db"
     conn = sqlite3.connect(file)
     c = conn.cursor()
-    c.execute("DROP TABLE IF EXISTS PatientDB")
+    c.execute("DROP TABLE IF EXISTS JeopardyDB")
     c.execute(
-    """
-    CREATE TABLE PatientDB 
-    (Facility ID,Facility Name,State,HCAHPS Answer Description,
-    Effectiveness of care national comparison,
-    Timeliness of care national comparison,
-    Efficient use of medical imaging national comparison)"""
-            )
-    #insert
-    c.executemany("INSERT INTO PatientDB VALUES ( ?, ?, ?, ?, ?, ?, ?)", payload)
+        """
+    CREATE TABLE JeopardyDB 
+    ("Show Number", "Air Date", "Round", "Category", "Value", "Question", "Answer")"""
+    )
+    # insert
+    c.executemany("INSERT INTO JeopardyDB VALUES (?, ?, ?, ?, ?, ?, ?)", payload)
 
     conn.commit()
     conn.close()
-    return "PatientDB.db"
-
+    return "JeopardyDB.db"
