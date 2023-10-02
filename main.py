@@ -15,7 +15,7 @@ def main(the_query):
 
     # Transform and load
     print("Transforming data...")
-    load(the_query)
+    load()
 
     # Query
     print("Querying data...")
