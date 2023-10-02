@@ -8,7 +8,7 @@ import csv
 import os
 
 #load the csv file and insert into a new sqlite3 database
-def load(dataset="https://github.com/nogibjj/Simrun_sqlite-lab/raw/main/data/NC_data.csv"):
+def load(dataset="/data/NC_data.csv"):
     """"Transforms and Loads data into the local SQLite3 database"""
 
     #prints the full working directory and path
@@ -22,24 +22,13 @@ def load(dataset="https://github.com/nogibjj/Simrun_sqlite-lab/raw/main/data/NC_
     c.execute(
     """
     CREATE TABLE PatientDB 
-    (Facility ID,Facility Name,Address,City,State,ZIP Code,County Name,Phone Number,
-    HCAHPS Measure ID,HCAHPS Question,HCAHPS Answer Description,Patient Survey Star Rating,
-    Patient Survey Star Rating Footnote,HCAHPS Answer Percent,HCAHPS Answer Percent Footnote,
-    HCAHPS Linear Mean Value,Number of Completed Surveys,Number of Completed Surveys Footnote,
-    Survey Response Rate Percent,Survey Response Rate Percent Footnote,Start Date,End Date,Year,
-    Hospital Type,Hospital Ownership,Emergency Services,Meets criteria for promoting interoperability of EHRs,
-    Hospital overall rating,Hospital overall rating footnote,Mortality national comparison,
-    Mortality national comparison footnote,
-    Safety of care national comparison,Safety of care national comparison footnote,
-    Readmission national comparison,Readmission national comparison footnote,Patient experience national comparison,
-    Patient experience national comparison footnote,Effectiveness of care national comparison,
-    Effectiveness of care national comparison footnote,Timeliness of care national comparison,
-    Timeliness of care national comparison footnote,
-    Efficient use of medical imaging national comparison,
-    Efficient use of medical imaging national comparison footnote)"""
+    (Facility ID,Facility Name,State,HCAHPS Answer Description,
+    Effectiveness of care national comparison,
+    Timeliness of care national comparison,
+    Efficient use of medical imaging national comparison)"""
             )
     #insert
-    c.executemany("INSERT INTO PatientDB VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", payload)
+    c.executemany("INSERT INTO PatientDB VALUES ( ?, ?, ?, ?, ?, ?, ?)", payload)
 
     conn.commit()
     conn.close()
