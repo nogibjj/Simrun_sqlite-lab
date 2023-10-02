@@ -4,8 +4,7 @@ Example:
 "Show Number", "Air Date", "Round", "Category", "Value", "Question", "Answer"
 """
 import sqlite3
-import pandas as pd
-from pprint import pprint
+
 
 def load(the_query):
     dataset = "data/Jeopardy.csv"
