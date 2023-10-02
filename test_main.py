@@ -7,7 +7,9 @@ from mylib.query import query
 
 
 def test_query():
-    assert query("SELECT COUNT(*) FROM JeopardyDB") == [("36557",)]
+    """Test the query function"""
+
+    assert query(the_query) == [("36557",)]
 
     pass
 
@@ -18,3 +20,8 @@ def test_extract():
 
 def test_transform_load():
     pass
+
+
+if __name__ == "__main__":
+    the_query = "SELECT COUNT(*) FROM JeopardyDB"
+    test_query(the_query)
