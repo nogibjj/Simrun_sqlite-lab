@@ -3,6 +3,7 @@ Transforms and Loads data into the local SQLite3 database
 Example:
 ,general name,count_products,ingred_FPro,avg_FPro_products,avg_distance_root,ingred_normalization_term,semantic_tree_name,semantic_tree_node
 """
+import chardet
 import sqlite3
 import csv
 import os
@@ -14,7 +15,9 @@ def load(dataset="data/Jeopardy.csv"):
 
     # prints the full working directory and path
     print(os.getcwd())
-    payload = csv.reader(open(dataset, newline=""), delimiter=",")
+    with open(dataset, "rb") as f:
+        result = chardet.detect(f.read())
+    payload = csv.reader(open(dataset, newline="", encoding="utf-8"), delimiter=",")
     print(payload)
     file = "JeopardyDB.db"
     conn = sqlite3.connect(file)
