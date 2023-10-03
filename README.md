@@ -1,4 +1,4 @@
-## SQLite Lab
+## SQLite Lab [![CI](https://github.com/nogibjj/Simrun_sqlite-lab/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/Simrun_sqlite-lab/actions/workflows/cicd.yml)
 ![Alt text](<Diagram.png>)'
 
 ### Description of my dataset I choose:
